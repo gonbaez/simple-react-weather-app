@@ -22,7 +22,7 @@ class WeatherWeek extends Component {
   render() {
     if (!this.state.data) {
       return (
-        <div class={styles["lds-ellipsis"]}>
+        <div className={styles["lds-ellipsis"]}>
           <div></div>
           <div></div>
           <div></div>
