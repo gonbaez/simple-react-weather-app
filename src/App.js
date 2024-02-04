@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import WeatherWeek from "./components/WeatherWeek";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Can I use SCSS modules?
+
+import styles from "./styles/App.module.css";
+
+import { getLocation } from "./functions/location";
+
+class App extends Component {
+  state = {};
+
+  // Why like this and not like:
+  // async onLocationClick() { ... }
+
+  onLocationClick = async () => {
+    const loc = await getLocation();
+    this.setState({ coords: loc.coords });
+  };
+
+  render() {
+    return (
+      <>
+        <header>
+          <h1>What is your weather?</h1>
+        </header>
+
+        <main>
+          {!this.state.coords ? (
+            <img
+              onClick={this.onLocationClick}
+              src={require("./assets/location.png")} // Why require?
+              alt="location"
+            />
+          ) : (
+            <WeatherWeek coords={this.state.coords} />
+          )}
+        </main>
+
+        <footer>
+          <p>&copy; Gonzalo Baez 2024</p>
+        </footer>
+      </>
+    );
+  }
 }
 
 export default App;
