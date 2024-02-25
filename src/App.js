@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import WeatherWeek from "./components/WeatherWeek";
 
 // Can I use SCSS modules?
-
+// import myFile from "./assets/location.png";
 import styles from "./styles/App.module.css";
 
 import { getLocation } from "./functions/location";
@@ -29,7 +29,8 @@ class App extends Component {
           {!this.state.coords ? (
             <img
               onClick={this.onLocationClick}
-              src={require("./assets/location.png")} // Why require?
+              // src={require("./assets/location.png")} // Why require? Older syntax, like importing from the top
+              src="./location.png"
               alt="location"
             />
           ) : (

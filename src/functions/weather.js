@@ -30,7 +30,7 @@ export async function getForecastById(id) {
           description: forecastList[i]["weather"][0]["description"],
           date: isSameDay(forecastDate, new Date())
             ? "Today"
-            : format(new Date(forecastList[i]["dt_txt"]), "EEE Do"),
+            : format(new Date(forecastList[i]["dt_txt"]), "EEE do"),
         };
       } else {
         if (forecast[forecastDate]["max"] < forecastList[i]["main"]["temp"]) {
